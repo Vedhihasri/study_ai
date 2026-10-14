@@ -1,0 +1,24 @@
+.analytics-placeholder {
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #6c757d;
+  background: #f8f9fa;
+  border-radius: 12px;
+}
+
+.topic-row {
+  padding: 14px 0;
+}
+
+.topic-row + .topic-row {
+  border-top: 1px solid #f0f0f0;
+}
+
+.weak-area-list {
+  max-height: 420px;
+  overflow-y: auto;
+}
