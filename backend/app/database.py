@@ -1,3 +1,4 @@
+
 import os
 
 from dotenv import load_dotenv
@@ -8,12 +9,28 @@ load_dotenv()
 
 DATABASE_URL = os.getenv("DATABASE_URL")
 
-engine = create_engine(DATABASE_URL)
+if not DATABASE_URL:
+    raise RuntimeError(
+        "DATABASE_URL is missing. Set it in your .env file "
+        "or in your deployment environment variables."
+    )
+
+# Neon connection URLs commonly use postgres:// or postgresql://.
+# SQLAlchemy expects postgresql:// for the standard PostgreSQL driver.
+if DATABASE_URL.startswith("postgres://"):
+    DATABASE_URL = DATABASE_URL.replace(
+        "postgres://", "postgresql://", 1
+    )
+
+engine = create_engine(
+    DATABASE_URL,
+    pool_pre_ping=True,
+)
 
 SessionLocal = sessionmaker(
     autocommit=False,
     autoflush=False,
-    bind=engine
+    bind=engine,
 )
 
 Base = declarative_base()
