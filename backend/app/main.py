@@ -45,6 +45,7 @@ app.add_middleware(
         "http://127.0.0.1:3000",
         "http://127.0.0.1:5173",
         "https://study-ai-theta-one.vercel.app",
+        "https://study-1ph3ijwjq-vedhihasrisrinivasan-8544s-projects.vercel.app",
     ],
     allow_credentials=True,
     allow_methods=["*"],
